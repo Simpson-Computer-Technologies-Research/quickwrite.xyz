@@ -1,5 +1,5 @@
 # Quick Write
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/75189508/187475566-99d6032c-c443-47e9-b3a0-154aa63f9318.gif)
+![ezgif com-gif-maker-2](https://user-images.githubusercontent.com/75189508/187475978-46195fe1-33a5-4f3a-8c86-4695890299ce.gif)
 
 # About
 - This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for queries with seven synonyms.
