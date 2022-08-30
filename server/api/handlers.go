@@ -41,7 +41,7 @@ func HomePageHandler() http.HandlerFunc {
 		var marshalData, _ = json.Marshal(synonyms)
 
 		// If the synonyms result is equal to seven
-		if len(synonyms) == 7 {
+		if len(synonyms) > 0 {
 
 			// Set the query and the marshal data in the cache
 			Cache.Set(query, marshalData)
