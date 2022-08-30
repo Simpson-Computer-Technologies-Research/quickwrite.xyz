@@ -67,7 +67,7 @@
 		/>
 	</div>
 
-	<div oninput="Query()" style="margin-left: 20%; margin-right: 20%" contenteditable>
+	<div style="margin-left: 20%; margin-right: 20%">
 		{#each splitInput as word, i}
 			<div class="dropdown">
 				{#if wordMap[word] !== undefined && wordMap[word].length > 0}
