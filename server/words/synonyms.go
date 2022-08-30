@@ -8,6 +8,15 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
+// The CleanSpecialCharacters() function replaces
+// all percentage characters (eg: %20) with their
+// designated byte character (eg: %20 -> " ")
+func CleanSpecialCharacters(s string) string {
+	s = strings.ReplaceAll(s, "%20", " ")
+	s = strings.ReplaceAll(s, "%2F", "/")
+	return s
+}
+
 // The SynonymRequest() function is used to send
 // an http request to the thesaurus website. Once the
 // request has been sent, it returns the response body
@@ -58,9 +67,12 @@ func GetSynonyms(respBody string) []string {
 
 		// Check split length
 		if len(synonymSplit) > 1 {
+			// Make sure the synonym is valid
+			if len(synonymSplit[1]) >= 4 && len(synonymSplit[1]) <= 20 {
 
-			// Scrape the synonym
-			result = append(result, synonymSplit[1])
+				// Append the synonym to the result slice
+				result = append(result, CleanSpecialCharacters(synonymSplit[1]))
+			}
 		}
 	}
 	// Return the result
