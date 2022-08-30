@@ -1,4 +1,4 @@
-# Quick Write
+# Quick Write ![Stars](https://img.shields.io/github/stars/realTristan/QuickWrite?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/QuickWrite?label=Watchers)
 ![ezgif com-gif-maker-2](https://user-images.githubusercontent.com/75189508/187475978-46195fe1-33a5-4f3a-8c86-4695890299ce.gif)
 
 # About
