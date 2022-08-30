@@ -1,5 +1,5 @@
 # Quick Write ![Stars](https://img.shields.io/github/stars/realTristan/QuickWrite?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/QuickWrite?label=Watchers)
-![ezgif com-gif-maker-2](https://user-images.githubusercontent.com/75189508/187475978-46195fe1-33a5-4f3a-8c86-4695890299ce.gif)
+![modern-abstract-high-speed-movement-colourful-dynamic-motion-on-blue-background-movement-sport-pattern-for-banner-or-poster-design-background-concept-free-vector](https://user-images.githubusercontent.com/75189508/187476384-9c9d9866-0c3d-43e2-b86d-47ee03f11fc3.jpg)
 
 # About
 - This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for queries with seven synonyms.
