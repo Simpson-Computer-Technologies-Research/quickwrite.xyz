@@ -23,6 +23,7 @@
 	}
 
 	function Query(s) {
+		console.log(1)
 		// Clear previous timer
 		clearTimeout(queryTimer);
 
@@ -52,6 +53,7 @@
 			}
 		}, 320); // 320 milliseconds
 	}
+
 </script>
 
 <main>
@@ -65,7 +67,7 @@
 		/>
 	</div>
 
-	<div style="margin-left: 20%; margin-right: 20%">
+	<div oninput="Query()" style="margin-left: 20%; margin-right: 20%" contenteditable>
 		{#each splitInput as word, i}
 			<div class="dropdown">
 				{#if wordMap[word] !== undefined && wordMap[word].length > 0}
