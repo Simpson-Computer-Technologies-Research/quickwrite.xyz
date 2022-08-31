@@ -1,10 +1,10 @@
 # Quick Write ![Stars](https://img.shields.io/github/stars/realTristan/QuickWrite?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/QuickWrite?label=Watchers)
 ![Untitled](https://user-images.githubusercontent.com/75189508/187591268-184a9eac-9c93-4ebf-89c8-adaa9626b29a.png)
 
-# About
+# ❓ About
 - This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for both frontend and backend to ensure faster synonym queries.
 
-# How to use
+# 📝 How to use
 **1.** Paste in or type in any text you want into the white box. 
 <br>
 
@@ -16,7 +16,7 @@
 
 **4.** Click on one of the synonyms and the word will be replaced
 
-# API
+# 🟢 API
 <h3>Why make an API?</h3>
 I decided to make an api because I needed to use golang for webscraping as it's
 very fast and would take too long using javascript. I also made it because
