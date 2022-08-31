@@ -2,7 +2,47 @@
 ![Untitled](https://user-images.githubusercontent.com/75189508/187591268-184a9eac-9c93-4ebf-89c8-adaa9626b29a.png)
 
 # About
-- This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for queries with seven synonyms.
+
+<h3> What does this project do?</h3>
+
+- This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for both frontend and backend to ensure faster synonym queries.
+
+<h3>Why Golang?</h3>
+
+- Golang is fast, lightweight and easy to use for hosting API's. 
+- I have previous experience with golang and decided it was the best option for this project.
+
+<h3>Why Svelte?</h3>
+
+- Svelte is 30% faster than other frameworks.
+- Svelte is best when used for designing small apps
+
+
+# How to use
+1. Paste in or type in any text you want into the white box. 
+2. Click refresh. 
+3. Hover over the purple text to display a dropdown containing up to seven synonyms.
+4. Click on one of the synonyms and the word will be replaced
+
+# API
+<h3>Why make an API?</h3>
+I decided to make an api because I needed to use golang for webscraping as it's
+very fast and would take too long using javascript. I also made it because
+all of the other synonym api's were either paid or VERY slow.
+
+<h2>Usage</h2>
+
+<h3>Get Synonyms (Fast)</h3>
+
+```
+$ curl -X GET http://localhost:8000/synonyms?q=fast
+```
+
+```json
+"Example Response": {
+    ["agile","brisk","nimble","quick","rapid","swift"]
+}
+```
 
 # License
 MIT License

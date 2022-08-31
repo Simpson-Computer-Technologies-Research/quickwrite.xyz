@@ -21,7 +21,7 @@
 	function isAllLower(s) {
 		// Iterate over the string
 		for (let i = 0; i < s.length; i++) {
-			
+
 			// If the string index doesn't equal it's
 			// lowercase self
 			if (s[i] != s[i].toLowerCase()) {
@@ -37,7 +37,7 @@
 	// for the provided word.
 	function GetSynonyms(query) {
 		// Send the http request to the golang api
-		fetch("http://127.0.0.1:8000?q=" + query)
+		fetch("http://127.0.0.1:8000/synonyms?q=" + query)
 			.then((response) => response.json())
 			.then((data) => {
 				// Add the data to the wordmap

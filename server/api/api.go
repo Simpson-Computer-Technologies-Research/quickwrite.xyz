@@ -18,8 +18,13 @@ func ListenAndServe(port string) {
 	// Establish a new gorilla mux router
 	var router *mux.Router = mux.NewRouter()
 
+	// Synonyms Page
+	router.HandleFunc("/synonyms", SynonymsPageHandler()).Methods("GET")
+
 	// Home Page
-	router.HandleFunc("/", HomePageHandler()).Methods("GET")
+	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("quickwrite.xyz Public API"))
+	})
 
 	// Handle Router
 	http.Handle("/", router)
