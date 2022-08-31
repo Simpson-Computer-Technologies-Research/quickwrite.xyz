@@ -26,13 +26,6 @@
             <img src="./images/svelte_logo.png" alt="" width="16.5" height="19.5" style="margin-bottom: -5px; margin-left: 4px;"> 
             <mark style="color: #ff3c00; background: none; font-weight: 500; margin-right: 3px;">Svelte</mark>
         </a>
-
-        <!-- Redis 
-        <a href="https://redis.io" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
-            <img src="./images/redis_logo.png" alt="" width="18" height="20" style="margin-bottom: -0.6%; margin-left: 5px;">
-            <mark style="color: #6b7280; background: none; font-weight: 400;">Redis</mark>
-        </a>
-        -->
     </p>
 </div>
 

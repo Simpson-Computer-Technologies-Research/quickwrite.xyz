@@ -21,6 +21,7 @@
 	function isAllLower(s) {
 		// Iterate over the string
 		for (let i = 0; i < s.length; i++) {
+			
 			// If the string index doesn't equal it's
 			// lowercase self
 			if (s[i] != s[i].toLowerCase()) {
@@ -51,8 +52,10 @@
 		for (let i = 0; i < s.length; i++) {
 			// If the word is all lowercase and it's length is within 4-15
 			if (isAllLower(s[i]) && s[i].length >= 4 && s[i].length <= 15) {
+
 				// And the word doesn't already exist in the wordMap
 				if (WordMap[s[i]] === undefined) {
+					
 					// Get the synonyms for said word (s[i])
 					GetSynonyms(s[i]);
 				}
@@ -93,17 +96,19 @@
 					    {#each WordMap[word] as synonym, n}
 						    <div style="margin-bottom: 5px;">
                                 <!-- svelte-ignore a11y-invalid-attribute -->
-                                <a href="#"
-									style="cursor: pointer; color: #7c3aed;"
+                                <a href="#" style="cursor: pointer; color: #7c3aed;"
 									on:click={() => {
 										SplitDivTextInput[i] = WordMap[word][n]
 										GetSynonyms(WordMap[word][n])
                                 	}}>
-								{synonym}</a>
+									{synonym}
+								</a>
                             </div>
 					    {/each}
 				    </div>
 			    </div>
+
+			<!-- Use a plain word with no special hover effects-->
 			{:else}
 				<span>{word} </span>
 			{/if}
