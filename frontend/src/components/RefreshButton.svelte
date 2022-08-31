@@ -1,6 +1,7 @@
 <script>
-	export let editor;
-    export let Query;
+    // Variable Imports
+    export let DivTextEditor;
+    export let QuerySynonyms;
 </script>
 
 <main>
@@ -8,10 +9,14 @@
         <div class="btn">
             <div class="get_name" 
 				on:click={() => {
-					let c = editor.innerText;
-					editor.innerHTML = "";
-		
-					Query(c.split(" "));
+                    // Store current innerText
+					let c = DivTextEditor.innerText;
+
+                    // Reset the innerText
+					DivTextEditor.innerHTML = "";
+                    
+                    // Query for synonyms using previous innerText
+					QuerySynonyms(c.split(" "));
 				}}
 			> Refresh</div>
             <div class="snowflake-grid to-left">
@@ -63,12 +68,6 @@
 </main>
 
 <style>
-    :root {
-        --background-color: #5858ff;
-        --color: #000;
-        --light-theme: #fff;
-    }
-
     .container {
         display: flex;
         justify-content: center;
