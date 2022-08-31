@@ -5,10 +5,10 @@
 - This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for both frontend and backend to ensure faster synonym queries.
 
 # How to use
-1. Paste in or type in any text you want into the white box. 
-2. Click refresh. 
-3. Hover over the purple text to display a dropdown containing up to seven synonyms.
-4. Click on one of the synonyms and the word will be replaced
+**1.** Paste in or type in any text you want into the white box. 
+**2.** Click refresh. 
+**3.** Hover over the purple text to display a dropdown containing up to seven synonyms.
+**4.** Click on one of the synonyms and the word will be replaced
 
 # API
 <h3>Why make an API?</h3>
