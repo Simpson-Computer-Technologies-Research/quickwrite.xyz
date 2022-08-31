@@ -86,15 +86,15 @@
 
                 <!-- Create the synonym dropdown div -->
 				<div class="dropdown">
-				    <span style="color: #6366f1; font-weight: 800; font-size: 20px;">{word} </span>
+				    <span class="hover-underline-animation">{word} </span>
 				    <div class="dropdown-content">
 
 						<!-- For every synonym in the queries WordMap array -->
 					    {#each WordMap[word] as synonym, n}
-						    <div style="margin-bottom: 5px">
+						    <div style="margin-bottom: 5px;">
                                 <!-- svelte-ignore a11y-invalid-attribute -->
                                 <a href="#"
-									style="color: #6366f1; font-weight: 500; font-size: 16px; cursor: pointer;" 
+									style="cursor: pointer; color: #7c3aed;"
 									on:click={() => {
 										SplitDivTextInput[i] = WordMap[word][n]
 										GetSynonyms(WordMap[word][n])
@@ -105,7 +105,7 @@
 				    </div>
 			    </div>
 			{:else}
-				<span style="color: white; font-weight: 700; font-size: 20px;">{word} </span>
+				<span>{word} </span>
 			{/if}
 		{/each}
 	</div>
@@ -117,47 +117,63 @@
 <style>
 	/* Main */
 	main {
-		text-align: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
-	}
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 
 	/* The Text Input Div */
     .main_text_div {
+		text-align: left;
+		box-shadow: 0.5px 0.5px 20px 0.5px rgba(0, 0, 0, 0.1);
         white-space: pre-wrap;
+		margin-top: 3%;
         margin-left: 20%; 
         margin-right: 20%; 
-        color: white; 
-        font-weight: 700; 
-        font-size: 20px;
-        height: 100%;
+        color: black; 
+        font-weight: 400; 
+        font-size: 13px;
         padding: 5%;
-        border: 5px solid black;
-        border-color: #6366f1;
         border-radius: 15px;
         outline: 0px solid transparent;
-        background-color: #363636;
+        background-color: white;
     }
 
-    /* The Synonym Dropdown */
+	/* Text Hover Underline Slide */
+	.hover-underline-animation {
+		display: inline-block;
+		position: relative;
+		color: #7c3aed;
+	}
+	.hover-underline-animation:after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		transform: scaleX(0);
+		height: 1.5px;
+		bottom: 0;
+		left: 0;
+		background-color: #7c3aed;
+		transform-origin: bottom right;
+		transition: transform 0.25s ease-out;
+	}
+	.hover-underline-animation:hover:after {
+		transform: scaleX(1);
+		transform-origin: bottom left;
+	}
+
+    /* The Synonym List Dropdown */
 	.dropdown {
+		margin-bottom: 3%;
 		display: inline-block;
 	}
-    /* The Synonym Dropdown Content */
 	.dropdown-content {
 		display: none;
 		position: absolute;
-		background-color: #FDFDFD;
+		background-color: white;
+		box-shadow: 0.5px 0.5px 20px 0.5px rgba(0, 0, 0, 0.1);
 		padding: 12px 16px;
 		z-index: 1;
 	}
-    /* The Synonym Dropdown On Hover */
 	.dropdown:hover .dropdown-content {
 		display: block;
 		border-radius: 15px;
