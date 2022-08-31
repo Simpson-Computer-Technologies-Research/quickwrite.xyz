@@ -8,12 +8,10 @@
 **1.** Paste in or type in any text you want into the white box. 
 <br>
 
-**2.** Click refresh. 
-
+**2.** Click refresh. =
 <br>
 
 **3.** Hover over the purple text to display a dropdown containing up to seven synonyms.
-
 <br>
 
 **4.** Click on one of the synonyms and the word will be replaced
