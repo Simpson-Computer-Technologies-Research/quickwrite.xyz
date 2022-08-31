@@ -1,5 +1,5 @@
 # Quick Write ![Stars](https://img.shields.io/github/stars/realTristan/QuickWrite?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/QuickWrite?label=Watchers)
-![Untitled](https://user-images.githubusercontent.com/75189508/187571824-e4b9718d-b562-4551-8d4a-7551e7535b50.png)
+![Untitled](https://user-images.githubusercontent.com/75189508/187591268-184a9eac-9c93-4ebf-89c8-adaa9626b29a.png)
 
 # About
 - This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for queries with seven synonyms.
