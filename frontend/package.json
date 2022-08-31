@@ -20,6 +20,7 @@
     "svelte": "^3.49.0"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "sirv-cli": "^2.0.0"
   },
   "main": "rollup.config.js",

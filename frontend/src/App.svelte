@@ -1,6 +1,6 @@
 <script>
-	// Track input last key up
-	var queryTimer;
+	import RefreshButton from "./components/RefreshButton.svelte";
+
 	var wordMap = {}
 	let splitInput = [];
 
@@ -23,96 +23,89 @@
 	}
 
 	function Query(s) {
-		console.log(1)
-		// Clear previous timer
-		clearTimeout(queryTimer);
-
-		queryTimer = setTimeout(() => {
-			// Store the previous split length
-			let splitPreviousLength = splitInput.length
-
-			// Split the input
-			splitInput = s.split(" ")
-
-			// Slice the split input to avoid duplicates
-			let _split = splitInput.slice(splitPreviousLength)
-
-			// Iterate over the sliced split
-			for (let i = 0; i < _split.length; i++) {
-
-				// If the word is all lowercase and it's length is within 4-15
-				if (isAllLower(_split[i]) && _split[i].length >= 4 && _split[i].length <= 15) {
-
-					// And the word doesn't already exist in the wordMap
-					if (wordMap[_split[i]] === undefined) {
-
-						// Get the synonyms for said word (_split[i])
-						GetSynonyms(_split[i]);
-					}
+		// Iterate over the sliced split
+		for (let i = 0; i < s.length; i++) {
+			// If the word is all lowercase and it's length is within 4-15
+			if (isAllLower(s[i]) && s[i].length >= 4 && s[i].length <= 15) {
+				// And the word doesn't already exist in the wordMap
+				if (wordMap[s[i]] === undefined) {
+					// Get the synonyms for said word (s[i])
+					GetSynonyms(s[i]);
 				}
 			}
-		}, 320); // 320 milliseconds
+			if (s[i].length > 0) {
+				splitInput = [...splitInput, s[i]]
+			}
+		}
 	}
-
+	let editor;
 </script>
 
 <main>
-	<div style="width:50%; margin:0 auto;">
-		<!-- svelte-ignore a11y-autofocus -->
-		<input
-			type="text"
-			class="text_input"
-			placeholder="Text"
-			on:keyup={({ target: { value } }) => Query(value)} 
-		/>
-	</div>
-
-	<div style="margin-left: 20%; margin-right: 20%">
+	<!-- svelte-ignore a11y-autofocus -->
+	<div
+		autofocus="true"
+		contenteditable="true"
+		bind:this = {editor}
+		style="
+			white-space: pre-wrap;
+			margin-left: 20%; 
+			margin-right: 20%; 
+			color: white; 
+			font-weight: 700; 
+			font-size: 20px;
+			height: 100%;
+			padding: 5%;
+			border: 5px solid black;
+			border-color: #6366f1;
+			border-radius: 15px;
+			outline: 0px solid transparent;
+		"
+	>
 		{#each splitInput as word, i}
-			<div class="dropdown">
-				{#if wordMap[word] !== undefined && wordMap[word].length > 0}
-					<span style="color: blue;">{word}&nbsp;</span>
-					<div class="dropdown-content">
-						{#each wordMap[word] as synonym, n}
-							<div style="margin-bottom: 5px">
-								<!-- svelte-ignore a11y-invalid-attribute -->
-								<a href="#" on:click={() => {
-									splitInput[i] = wordMap[word][n]
-								}}>{synonym}</a>
-							</div>
-						{/each}
-					</div>
-				{:else}
-					<span>{word}&nbsp;</span>
-				{/if}
+			{#if word.length > 0 && wordMap[word] !== undefined && wordMap[word].length > 0}
+				<div class="dropdown">
+				<span style="color: #6366f1; font-weight: 800; font-size: 20px;">{word} </span>
+				<div class="dropdown-content">
+					{#each wordMap[word] as synonym, n}
+						<div style="margin-bottom: 5px">
+							<!-- svelte-ignore a11y-invalid-attribute -->
+							<a style="color: #6366f1; font-weight: 500; font-size: 16px; cursor: pointer;" href="#" on:click={() => {
+								splitInput[i] = wordMap[word][n]
+								GetSynonyms(wordMap[word][n])
+							}}>{synonym}</a>
+						</div>
+					{/each}
+				</div>
 			</div>
+			{:else}
+				<span style="color: white; font-weight: 700; font-size: 20px;">{word} </span>
+			{/if}
 		{/each}
 	</div>
-
+	<RefreshButton Query={Query} editor={editor}/>
 </main>
 
 <style>
-	.text_input {
-		width: 80%;
-		height: 50%;
-		padding-bottom: 30%;
-	}
 	.dropdown {
-		position: relative;
 		display: inline-block;
 	}
 
 	.dropdown-content {
 		display: none;
 		position: absolute;
-		background-color: #f9f9f9;
-		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		background-color: #FDFDFD;
 		padding: 12px 16px;
 		z-index: 1;
 	}
 
 	.dropdown:hover .dropdown-content {
 		display: block;
+		border-radius: 15px;
+	}
+
+	:global(body) {
+		background-color: #2B2B2B;
 	}
 
 	main {
