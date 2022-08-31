@@ -2,6 +2,9 @@
     // Variable Imports
     export let DivTextEditor;
     export let QuerySynonyms;
+
+    // Error message variable
+    let errorMessage = "";
 </script>
 
 <main>
@@ -9,14 +12,25 @@
         <div class="btn">
             <div class="get_name" 
 				on:click={() => {
-                    // Store current innerText
-					let c = DivTextEditor.innerText;
+                    // Make sure the content is under or equal to 750 characters
+                    if (DivTextEditor.innerText.length <= 750) {
+                        // Reset the error message
+                        errorMessage = "";
 
-                    // Reset the innerText
-					DivTextEditor.innerHTML = "";
-                    
-                    // Query for synonyms using previous innerText
-					QuerySynonyms(c.split(" "));
+                        // Store current innerText
+					    let c = DivTextEditor.innerText;
+
+                        // Reset the innerText
+                        DivTextEditor.innerHTML = "";
+
+                        // Query for synonyms using previous innerText
+                        QuerySynonyms(c.split(" "));
+                    } 
+
+                    // Set the error message
+                    else {
+                        errorMessage = `Too many characters! ${DivTextEditor.innerText.length}/750`
+                    }
 				}}
 			> Refresh</div>
             <div class="snowflake-grid to-left">
@@ -65,6 +79,9 @@
             </div>
         </div>
         </div>
+        <div class="container">
+            <p style="color: #ff5353">{errorMessage}</p>
+        </div>
 </main>
 
 <style>
@@ -72,7 +89,6 @@
         display: flex;
         justify-content: center;
         margin: 0 auto;
-        height: 100vh;
     }
     .btn {
         margin-top: 3%;
