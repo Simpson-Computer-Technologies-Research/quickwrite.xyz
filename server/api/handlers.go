@@ -38,10 +38,10 @@ func HomePageHandler() http.HandlerFunc {
 		)
 
 		// Marshal the data and return it
-		var marshalData, _ = json.Marshal(synonyms)
+		var marshalData, err = json.Marshal(synonyms)
 
 		// If the synonyms result is equal to seven
-		if len(synonyms) > 0 {
+		if len(synonyms) > 0 && err == nil {
 
 			// Set the query and the marshal data in the cache
 			Cache.Set(query, marshalData)
