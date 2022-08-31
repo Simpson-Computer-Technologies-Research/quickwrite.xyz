@@ -18,7 +18,7 @@ var Cache *cache.Cache = cache.Init()
 func isAllLetters(s string) bool {
 	for i := 0; i < len(s); i++ {
 		// Use bytes to determine whether the character is a letter
-		if !(s[i] >= 97 && s[i] <= 122) || !(s[i] >= 65 && s[i] <= 90) {
+		if !(s[i] >= 97 && s[i] <= 122) && !(s[i] >= 65 && s[i] <= 90) {
 			return false
 		}
 	}
