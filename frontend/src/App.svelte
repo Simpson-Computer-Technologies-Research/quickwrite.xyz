@@ -116,7 +116,10 @@
 	</div>
 
 	<!-- Refresh Button -->
-	<RefreshButton DivTextEditor={DivTextEditor} QuerySynonyms={QuerySynonyms}/>
+	<RefreshButton 
+		DivTextEditor={DivTextEditor} 
+		QuerySynonyms={QuerySynonyms} 
+	/>
 </main>
 
 <style>
