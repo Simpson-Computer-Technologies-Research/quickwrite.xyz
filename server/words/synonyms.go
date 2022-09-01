@@ -8,6 +8,9 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
+// Request Client used for sending http requests
+var RequestClient *fasthttp.Client = &fasthttp.Client{}
+
 // The CleanSpecialCharacters() function replaces
 // all percentage characters (eg: %20) with their
 // designated byte character (eg: %20 -> " ")
@@ -23,7 +26,7 @@ func CleanSpecialCharacters(s string) string {
 func SynonymRequest(synonym string) string {
 	// Create the http request object
 	var req = &requests.HttpRequest{
-		Client: &fasthttp.Client{},
+		Client: RequestClient,
 		Url:    "https://www.thesaurus.com/browse/" + synonym,
 		Method: "GET",
 		Headers: map[string]string{
