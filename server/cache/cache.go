@@ -24,13 +24,8 @@ func (cache *Cache) Set(key string, value []byte) {
 	cache.mutex.Lock()
 	defer cache.mutex.Unlock()
 
-	// Make sure the cache data size isn't greater than 2MB
-	// (80,000 keys)
-	//
-	// 2,000,000 bytes is 2MB, divide that by 25
-	// (the size of each key+value in the cache)
-	//
-	if len(cache.data) >= 80000 {
+	// Limit the cache size
+	if len(cache.data) >= 10000 {
 		// Delete the first key in the cache data
 		for k := range cache.data {
 			delete(cache.data, k)
