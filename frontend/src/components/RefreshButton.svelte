@@ -1,7 +1,7 @@
 <script>
     // Variable Imports
-    export let DivTextEditor;
-    export let QuerySynonyms;
+    export let divTextEditor;
+    export let querySynonyms;
 
     // Error message variable
     let errorMessage = "";
@@ -10,26 +10,27 @@
 <main>
 	<div class="container">
         <div class="btn">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="get_name" 
 				on:click={() => {
                     // Make sure the content is under or equal to 750 characters
-                    if (DivTextEditor.innerText.length <= 750) {
+                    if (divTextEditor.innerText.length <= 750) {
                         // Reset the error message
                         errorMessage = "";
 
                         // Store current innerText
-					    let c = DivTextEditor.innerText;
+					    let c = divTextEditor.innerText;
 
                         // Reset the innerText
-                        DivTextEditor.innerHTML = "";
+                        divTextEditor.innerHTML = "";
 
                         // Query for synonyms using previous innerText
-                        QuerySynonyms(c.split(" "));
+                        querySynonyms(c.split(" "));
                     } 
 
                     // Set the error message
                     else {
-                        errorMessage = `Too many characters! ${DivTextEditor.innerText.length}/750`
+                        errorMessage = `Too many characters! ${divTextEditor.innerText.length}/750`
                     }
 				}}
 			> Refresh</div>

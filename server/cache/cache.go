@@ -17,24 +17,6 @@ func Init() *Cache {
 	}
 }
 
-// The DeleteFirstDataKey() function is used to
-// delete the first key of the cache data
-func (cache *Cache) DeleteFirstDataKey() {
-	// MAKE SURE TO USE A FUNCTION THAT
-	// ALREADY HAS THE cache.mutex LOCKING
-	// AND UNLOCKING BEFORE CALLING THIS ONE
-
-	// Iterate over the cache data
-	for k := range cache.data {
-
-		// Delete the first key
-		delete(cache.data, k)
-
-		// Break the loop and return the function
-		return
-	}
-}
-
 // The Set() function is used to set a key in the cache
 func (cache *Cache) Set(key string, value []byte) {
 
@@ -50,7 +32,10 @@ func (cache *Cache) Set(key string, value []byte) {
 	//
 	if len(cache.data) >= 80000 {
 		// Delete the first key in the cache data
-		cache.DeleteFirstDataKey()
+		for k := range cache.data {
+			delete(cache.data, k)
+			break
+		}
 	}
 	// Set the key and value inside the cache
 	cache.data[key] = value
