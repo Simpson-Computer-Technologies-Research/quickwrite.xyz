@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     // Variable Imports
-    export let divTextEditor;
-    export let querySynonyms;
+    export let divTextEditor: any;
+    export let querySynonyms: any;
 
     // Error message variable
-    let errorMessage = "";
+    let errorMessage: string = "";
 </script>
 
 <main>

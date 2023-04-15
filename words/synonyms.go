@@ -4,7 +4,7 @@ package words
 import (
 	"strings"
 
-	"github.com/realTristan/QuickWrite/server/requests"
+	"github.com/realTristan/quickwrite.xyz/requests"
 	"github.com/valyala/fasthttp"
 )
 

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/realTristan/QuickWrite/server/cache"
-	"github.com/realTristan/QuickWrite/server/words"
+	"github.com/realTristan/quickwrite.xyz/cache"
+	"github.com/realTristan/quickwrite.xyz/words"
 )
 
 // Declare global cache

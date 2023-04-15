@@ -16,14 +16,14 @@
 
         <!-- Go -->
         <a href="https://go.dev" target="_blank" rel="noopener noreferrer">
-            <img src="./images/go_logo.png" alt="" width="44" height="44" style="margin-bottom: -16px; margin-left: -4px;">
+            <img src="go_logo.png" alt="" width="44" height="44" style="margin-bottom: -16px; margin-left: -4px;">
         </a>
-
-        and
         
+        and
+
         <!-- Svelte -->
         <a href="https://svelte.dev" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
-            <img src="./images/svelte_logo.png" alt="" width="16.5" height="19.5" style="margin-bottom: -5px; margin-left: 4px;"> 
+            <img src="svelte_logo.png" alt="" width="16.5" height="19.5" style="margin-bottom: -5px; margin-left: 4px;"> 
             <mark style="color: #ff3c00; background: none; font-weight: 500; margin-right: 3px;">Svelte</mark>
         </a>
     </p>

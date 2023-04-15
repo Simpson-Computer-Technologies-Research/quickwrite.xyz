@@ -1,6 +1,6 @@
 package main
 
-import "github.com/realTristan/QuickWrite/server/api"
+import "github.com/realTristan/quickwrite.xyz/api"
 
 // Main Function
 func main() {

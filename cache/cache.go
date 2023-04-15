@@ -19,7 +19,6 @@ func Init() *Cache {
 
 // The Set() function is used to set a key in the cache
 func (cache *Cache) Set(key string, value []byte) {
-
 	// Cache mutex locking / unlocking
 	cache.mutex.Lock()
 	defer cache.mutex.Unlock()
