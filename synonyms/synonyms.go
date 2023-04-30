@@ -1,4 +1,4 @@
-package words
+package synonyms
 
 // Import packages
 import (
@@ -20,14 +20,14 @@ func CleanSpecialCharacters(s string) string {
 	return s
 }
 
-// The SynonymRequest() function is used to send
+// The GetFromThesaurus() function is used to send
 // an http request to the thesaurus website. Once the
 // request has been sent, it returns the response body
-func SynonymRequest(synonym string) string {
+func GetFromThesaurus(word string) string {
 	// Create the http request object
 	var req = &requests.HttpRequest{
 		Client: RequestClient,
-		Url:    "https://www.thesaurus.com/browse/" + synonym,
+		Url:    "https://www.thesaurus.com/browse/" + word,
 		Method: "GET",
 		Headers: map[string]string{
 			"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
@@ -41,41 +41,40 @@ func SynonymRequest(synonym string) string {
 	return string(resp.Body())
 }
 
-// The GetSynonyms function is used to webscrape synonyms
-// from the thesaurus.com website.
+// The Parse function is used to parse the scraped synonyms
+// from the thesaurus.com website into a string array.
 //
-// Using the provided respBody, the function splits it by
+// Using the provided body, the function splits it by
 // the "data-linkid". After said split, it limits it's result
 // to only seven rows. For each of the seven rows,
 // split the row by the href tag to get the synonym name
 //
 // Once the synonym name has been acquired, append the synonym
 // to the result slice
-
-// The GetSynonyms() function is used to get synonyms
-// using the thesaurus response body
-func GetSynonyms(respBody string) []string {
+func Parse(body string) []string {
 	var result []string = make([]string, 7)
 
 	// Get the synonym rows
-	var synonyms []string = strings.Split(respBody, `" data-linkid="nn1ov4"`)
+	var synonyms []string = strings.Split(body, `" data-linkid="nn1ov4"`)
 	if len(synonyms) > 7 {
 		synonyms = synonyms[:7]
 	}
 
 	// Iterate over the scraped synonym rows
 	for i := 0; i < len(synonyms); i++ {
-		var synonymSplit []string = strings.Split(
+		var split []string = strings.Split(
 			synonyms[i], `<a font-weight="inherit" href="/browse/`)
 
 		// Check split length
-		if len(synonymSplit) > 1 {
-			// Make sure the synonym is valid
-			if len(synonymSplit[1]) >= 4 && len(synonymSplit[1]) <= 20 {
+		if len(split) <= 1 {
+			continue
+		}
 
-				// Append the synonym to the result slice
-				result = append(result, CleanSpecialCharacters(synonymSplit[1]))
-			}
+		// Verify that the synonym is between 4 and 20 characters
+		if len(split[1]) >= 4 && len(split[1]) <= 20 {
+			// Append the synonym to the result slice
+			var clean string = CleanSpecialCharacters(split[1])
+			result = append(result, clean)
 		}
 	}
 	// Return the result

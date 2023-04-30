@@ -31,6 +31,7 @@ func (cache *Cache) Set(key string, value []byte) {
 			break
 		}
 	}
+
 	// Set the key and value inside the cache
 	cache.data[key] = value
 }
@@ -43,8 +44,8 @@ func (cache *Cache) ExistsInData(key string) bool {
 	defer cache.mutex.RUnlock()
 
 	// Variable "e" is a bool for whether the key exists
-	var _, e = cache.data[key]
-	return e
+	var _, exists = cache.data[key]
+	return exists
 }
 
 // The Get() function is used to get the synonyms

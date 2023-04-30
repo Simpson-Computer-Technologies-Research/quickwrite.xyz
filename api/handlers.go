@@ -2,22 +2,25 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"strings"
 
 	"github.com/realTristan/quickwrite.xyz/cache"
-	"github.com/realTristan/quickwrite.xyz/words"
+	"github.com/realTristan/quickwrite.xyz/synonyms"
 )
 
 // Declare global cache
 var Cache *cache.Cache = cache.Init()
 
-// The isAllLetters() function is used to determine
+// The isAllAlpha() function is used to determine
 // whether all the characters in a string are either
 // upper case letters or lower case letters.
-func isAllLetters(s string) bool {
+func isAllAlpha(s string) bool {
 	for i := 0; i < len(s); i++ {
 		// Use bytes to determine whether the character is a letter
+		// uppercase: 65 - 90
+		// lowercase: 97 - 122
 		if !(s[i] >= 97 && s[i] <= 122) && !(s[i] >= 65 && s[i] <= 90) {
 			return false
 		}
@@ -27,32 +30,29 @@ func isAllLetters(s string) bool {
 
 // The IsQueryErrors() function is used to return any errors
 // in the provided url query.
-func IsQueryErrors(w http.ResponseWriter, query string) bool {
+func existsQueryErrors(w http.ResponseWriter, query string) error {
 	// Query is invalid
 	if len(query) < 1 {
-		w.Write([]byte(`{"error": "No query provided"}`))
-		return true
+		return errors.New(`{"error": "No query provided"}`)
 	}
 
 	// Query is too short
 	if len(query) < 4 {
-		w.Write([]byte(`{"error": "Query too short"}`))
-		return true
+		return errors.New(`{"error": "Query too short"}`)
 	}
 
 	// Query is too large
 	if len(query) > 15 {
-		w.Write([]byte(`{"error": "Query too large"}`))
-		return true
+		return errors.New(`{"error": "Query too large"}`)
 	}
 
 	// Query contains any non-alpha characters
-	if !isAllLetters(query) {
-		w.Write([]byte(`{"error": "Query has non-alpha characters"}`))
-		return true
+	if !isAllAlpha(query) {
+		return errors.New(`{"error": "Query has non-alpha characters"}`)
 	}
+
 	// There are no errors
-	return false
+	return nil
 }
 
 // Synonym Page Handler
@@ -63,7 +63,10 @@ func SynonymsPageHandler() http.HandlerFunc {
 
 		// Get the query from the url parameters
 		var query string = strings.ToLower(r.URL.Query().Get("q"))
-		if IsQueryErrors(w, query) {
+
+		// If there's errors in the query
+		if err := existsQueryErrors(w, query); err != nil {
+			w.Write([]byte(err.Error()))
 			return
 		}
 
@@ -77,10 +80,10 @@ func SynonymsPageHandler() http.HandlerFunc {
 		// Define Synonym Variables
 		var (
 			// Get the synonyms request body from thesaurus.com
-			synonymRequestBody string = words.SynonymRequest(query)
+			body string = synonyms.GetFromThesaurus(query)
 
 			// Get the array of scraped synonyms
-			synonyms []string = words.GetSynonyms(synonymRequestBody)
+			synonyms []string = synonyms.Parse(body)
 		)
 
 		// Marshal the data and return it

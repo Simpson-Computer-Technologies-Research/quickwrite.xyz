@@ -7,7 +7,7 @@
   let divTextEditor: any;
 
   // Word Map holding synonyms
-  let wordMap: any = {};
+  let wordCache: any = {};
 
   // splitDivTextInput array holding the div text words
   let splitDivTextInput: string[] = [];
@@ -21,8 +21,7 @@
   function isAllLower(s: string): boolean {
     // Iterate over the string
     for (let i = 0; i < s.length; i++) {
-      // If the string index doesn't equal it's
-      // lowercase self
+      // If the string index doesn't equal it's lowercase self
       if (s[i] != s[i].toLowerCase()) {
         return false;
       }
@@ -35,12 +34,18 @@
   // returns a response containing all the synonyms
   // for the provided word.
   function GetSynonyms(query: string): void {
-    // Send the http request to the golang api
     fetch("http://127.0.0.1:8000/synonyms?q=" + query)
       .then((response) => response.json())
       .then((data) => {
-        // Add the data to the wordMap
-        wordMap[query] = data;
+        // If the wordCache is too large, delete the first key
+        if (wordCache.length > 1000) {
+          delete wordCache[Object.keys(wordCache)[0]];
+        }
+
+        // If the data is not empty
+        if (data.length > 0) {
+          wordCache[query] = data
+        }
       });
   }
 
@@ -51,8 +56,8 @@
     for (let i = 0; i < s.length; i++) {
       // If the word is all lowercase and it's length is within 4-15
       if (isAllLower(s[i]) && s[i].length >= 4 && s[i].length <= 15) {
-        // And the word doesn't already exist in the wordMap
-        if (wordMap[s[i]] === undefined) {
+        // And the word doesn't already exist in the wordCache
+        if (wordCache[s[i]] === undefined) {
           // Get the synonyms for said word (s[i])
           GetSynonyms(s[i]);
         }
@@ -75,27 +80,25 @@
   <!-- For each word in the provided text -->
   {#each splitDivTextInput as word, i}
     <!-- If there are no synonyms available -->
-    {#if word.length <= 0 || wordMap[word] === undefined || wordMap[word].length == 0}
-      <span>{word} </span>
-
-      <!-- Otherwise, there are synonyms available -->
+    {#if word.length <= 0 || wordCache[word] === undefined}
+      {word}
+    
+    <!-- Otherwise, there are synonyms available -->
     {:else}
       <!-- Create the synonym dropdown div -->
       <div class="dropdown">
         <span class="hover-underline-animation">{word} </span>
         <div class="dropdown-content">
-          <!-- For every synonym in the queries wordMap array -->
-          {#each wordMap[word] as synonym, n}
+          <!-- For every synonym in the queries wordCache array -->
+          {#each wordCache[word] as synonym, n}
             <div style="margin-bottom: 5px;">
-              <!-- svelte-ignore a11y-invalid-attribute -->
-              <a
-                href="#"
-                style="cursor: pointer; color: #7c3aed;"
+              <a 
+                href="#{word}"
+                style="cursor: pointer; color: #7c3aed; margin-bottom: 5px;"
                 on:click={() => {
-                  splitDivTextInput[i] = wordMap[word][n];
-                  GetSynonyms(wordMap[word][n]);
-                }}>{synonym}</a
-              >
+                  splitDivTextInput[i] = wordCache[word][n];
+                  GetSynonyms(wordCache[word][n]);
+                }}>{synonym}</a>
             </div>
           {/each}
         </div>
