@@ -17,14 +17,7 @@
 **4.** Click on one of the synonyms and the word will be replaced
 
 # API
-<h3>Why make an API?</h3>
-I decided to make an api because I needed to use golang for webscraping as it's
-very fast and would take too long using javascript. I also made it because
-all of the other synonym api's were either paid or VERY slow.
-
-<h2>Usage</h2>
-
-<h3>Get Synonyms (Fast)</h3>
+## Usage
 
 ```
 $ curl -X GET http://localhost:8000/synonyms?q=fast
