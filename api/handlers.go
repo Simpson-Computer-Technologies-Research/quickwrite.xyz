@@ -30,7 +30,7 @@ func isAllAlpha(s string) bool {
 
 // The IsQueryErrors() function is used to return any errors
 // in the provided url query.
-func existsQueryErrors(w http.ResponseWriter, query string) error {
+func existsQueryErrors(query string) error {
 	// Query is invalid
 	if len(query) < 1 {
 		return errors.New(`{"error": "No query provided"}`)
@@ -65,7 +65,7 @@ func SynonymsPageHandler() http.HandlerFunc {
 		var query string = strings.ToLower(r.URL.Query().Get("q"))
 
 		// If there's errors in the query
-		if err := existsQueryErrors(w, query); err != nil {
+		if err := existsQueryErrors(query); err != nil {
 			w.Write([]byte(err.Error()))
 			return
 		}
