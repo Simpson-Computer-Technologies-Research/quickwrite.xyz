@@ -19,8 +19,6 @@
 # API
 ## Usage
 
-### Get Synonyms (Fast)
-
 ```
 $ curl -X GET http://localhost:8000/synonyms?q=fast
 ```
