@@ -2,7 +2,7 @@
 ![Untitled](https://user-images.githubusercontent.com/75189508/187591268-184a9eac-9c93-4ebf-89c8-adaa9626b29a.png)
 
 # About
-- This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for both frontend and backend to ensure faster synonym queries. 
+This project was made using Svelte and Golang. QuickWrite iterates over the provided input and finds synonyms for every other word. QuickWrite has a caching system for both frontend and backend to ensure faster synonym queries. 
 
 # How to use
 **1.** Paste in or type in any text you want into the white box. 
