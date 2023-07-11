@@ -1,4 +1,4 @@
-# quickwrite.xyz ![Stars](https://img.shields.io/github/stars/realTristan/quickwrite.xyz?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/quickwrite.xyz?label=Watchers)
+# quickwrite.xyz ![Stars](https://img.shields.io/github/stars/Simpson-Computer-Technologies-Research/quickwrite.xyz?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/Simpson-Computer-Technologies-Research/quickwrite.xyz?label=Watchers)
 ![Untitled](https://user-images.githubusercontent.com/75189508/187591268-184a9eac-9c93-4ebf-89c8-adaa9626b29a.png)
 
 # About
